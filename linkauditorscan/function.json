@@ -1,0 +1,12 @@
+{
+  "bindings": [
+    {
+      "type": "queueTrigger",
+      "name": "myQueueItem",
+      "queueName": "scanrequestqueue",
+      "connection": "LinkAuditorStorage",
+      "direction": "in"
+    }
+  ],
+  "disabled": false
+}
