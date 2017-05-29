@@ -43,7 +43,7 @@ using System.Threading.Tasks;
             }
         }
 
-        public static async Task Run(string myQueueItem, ExecutionContext exCtx, TraceWriter log)
+         public static async Task Run(string myQueueItem, ExecutionContext exCtx, TraceWriter log)
         {
             var webApi = System.Configuration.ConfigurationManager.AppSettings["WebApiEndPoint"];
             var storageConn = System.Configuration.ConfigurationManager.AppSettings["LinkAuditorStorage"];
@@ -52,7 +52,7 @@ using System.Threading.Tasks;
                                         new AzureFunctionConfigManager("scanrequestqueue", "scannedurls",storageConn, webApi),
                                         new StringResourceManager(),
                                         exCtx.InvocationId,
-                                        new AzureFunctionLogger(exCtx.InvocationId.ToString(), log)
+                                        new AzureFunctionLogger(exCtx.InvocationId.ToString(), log), 10, 1000
                                     );
              await azureScanner.ProcessScan(JsonConvert.DeserializeObject<PageScanRequest>(myQueueItem));
             
